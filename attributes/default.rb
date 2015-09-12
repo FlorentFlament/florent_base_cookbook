@@ -1,5 +1,14 @@
 default['florent_base'] = {
-  packages: ['git', 'tree', 'emacs24-nox', 'htop', 'iotop', 'lsof']
+  packages: [
+    'emacs24-nox',
+    'git',
+    'htop',
+    'iotop',
+    'ipython',
+    'lsof',
+    'weboob', # real estates work
+    'tree',
+  ]
 }
 
 # Setting correct hostname
