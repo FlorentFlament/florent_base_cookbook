@@ -1,8 +1,17 @@
 include_recipe 'hostname'
-include_recipe 'chef-dk'
 include_recipe 'users::sysadmins'
-include_recipe 'florent_base::rootlock'
 
-node['florent_base']['packages'].each do |pk|
-  package pk
+# Remove root password if any.
+execute 'rootlock' do
+  command "sed -i 's/^root:[^:]*:/root:!:/' /etc/shadow"
+  not_if { open('/etc/shadow').read =~ /^root:!:/ }
+end
+
+# Use dyndns if an account has been specified
+unless node['ddclient']['login'].nil? || node['ddclient']['password'].nil?
+  include_recipe 'ddclient'
+end
+
+node['florent_base']['packages'].each do |pkg|
+  package pkg
 end
