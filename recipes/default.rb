@@ -1,3 +1,4 @@
+include_recipe 'apt' # apt-get update on debian based platforms
 include_recipe 'hostname'
 include_recipe 'users::sysadmins'
 
