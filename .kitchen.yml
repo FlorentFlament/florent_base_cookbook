@@ -1,7 +1,6 @@
 ---
 driver:
   name: vagrant
-  provider: openstack
 
 provisioner:
   name: chef_zero
